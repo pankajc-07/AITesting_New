@@ -1,0 +1,17 @@
+{
+    "name": "rice-pot-playwright-framework",
+    "version": "1.0.0",
+    "description": "Enterprise Playwright TypeScript framework for Salesforce login automation",
+    "scripts": {
+        "test": "npx playwright test",
+        "test:headed": "npx playwright test --headed",
+        "test:debug": "npx playwright test --debug",
+        "test:report": "npx playwright show-report",
+        "lint": "npx tsc --noEmit"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.45.0",
+        "@types/node": "^26.2.0",
+        "typescript": "^5.5.0"
+    }
+}

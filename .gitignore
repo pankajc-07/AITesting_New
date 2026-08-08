@@ -1,0 +1,25 @@
+target/
+.idea/
+*.iml
+*.class
+*.jar
+*.log
+.DS_Store
+.vscode/
+
+# Node.js / TypeScript
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Playwright
+playwright-report/
+test-results/
+playwright/.cache/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+Thumbs.db
