@@ -25,6 +25,15 @@ AITesterBlueprint4x/
 ├── chapter_02_Prompt_Eng/          # Prompt engineering with RICE POT framework
 │   ├── prompt_templates/           # Reusable prompt templates (testcase_creator, STLC)
 │   └── RICE_POT_PlaywrightFramework/  # Enterprise Playwright + TypeScript framework
+├── chapter_03_Local_TC_Genarator/  # Local Test Case Generator with Streamlit + Ollama
+│   ├── src/                        # Application source code
+│   │   ├── app.py                  # Main chat screen (Streamlit)
+│   │   ├── pages/settings.py       # Settings configuration screen
+│   │   ├── config_store.py         # Settings persistence layer
+│   │   ├── jira_client.py          # Jira REST API wrapper
+│   │   ├── llm_client.py           # Ollama + Groq LLM orchestrator
+│   │   └── plan.md                 # Architecture & implementation plan
+│   └── Templates/                  # LLM prompt templates
 └── README.md
 ```
 
@@ -96,6 +105,65 @@ RICE_POT_PlaywrightFramework/
     └── utils/
         └── test-helpers.ts     # generateRandomString, isValidEmailFormat
 ```
+
+---
+
+## Chapter 3: Local Test Case Generator (Streamlit + Ollama)
+
+A **two-screen Streamlit application** that generates test cases from Jira tickets using a local LLM (Ollama) with automatic cloud fallback (Groq).
+
+### Features
+
+| Feature | Description |
+|---|---|
+| 💬 **Chat Interface** | ChatGPT-style UI — type a Jira key, get test cases |
+| ⚙️ **Settings Screen** | Configure Jira credentials, LLM provider, API keys |
+| 🦙 **Local LLM** | Uses Ollama (`gemma3:1b`) running locally — private & free |
+| ☁️ **Cloud Fallback** | Auto-switches to Groq if Ollama is unavailable |
+| 🔗 **Jira Integration** | Fetches ticket summary, description & acceptance criteria via REST API |
+| 📥 **Download** | Export generated test cases as Markdown |
+
+### Quick Start
+
+```bash
+cd chapter_03_Local_TC_Genarator/src
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Create .env file with your credentials (see .env.example)
+# JIRA_BASE_URL=https://your-company.atlassian.net
+# JIRA_EMAIL=you@company.com
+# JIRA_API_TOKEN=your-jira-api-token
+# GROQ_API_KEY=gsk_...  (optional, for fallback)
+
+# Make sure Ollama is running with gemma3:1b
+ollama serve
+
+# Launch the app
+streamlit run app.py
+```
+
+### Architecture
+
+```
+User: "create test cases for QA-102"
+  → app.py parses Jira key
+  → jira_client.py fetches ticket via REST API
+  → Template merged with ticket data
+  → llm_client.py: Ollama (default) or Groq (fallback)
+  → Test cases rendered in chat with download option
+```
+
+### Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **UI** | Streamlit |
+| **LLM (Primary)** | Ollama — `gemma3:1b` |
+| **LLM (Fallback)** | Groq — `llama-3.1-8b-instant` |
+| **Jira API** | REST API v2 (Basic Auth) |
+| **Config** | `.env` + `settings.json` |
 
 ---
 

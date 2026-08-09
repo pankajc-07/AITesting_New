@@ -21,5 +21,11 @@ playwright/.cache/
 .env
 .env.local
 
+# Streamlit / Python generated
+settings.json
+__pycache__/
+*.pyc
+*.pyo
+
 # OS files
 Thumbs.db
