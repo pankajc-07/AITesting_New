@@ -1,172 +1,108 @@
-# AITester Blueprint 4x
+# AI Tester Blueprint 4x
 
-AI-powered test automation blueprint.
-
-## Overview
-
-AITester Blueprint 4x — where we learn about:
-- AI Agents
-- MCPs (Model Context Protocol)
-- RAG (Retrieval-Augmented Generation)
-- LLM Evaluations
-- LangChain
-- LangFlow
-- ATAN (AI Test Automation Network)
-- Prompt Engineering (RICE POT framework)
-- And many more things that make us AI-powered testers
+A comprehensive learning repository for AI-powered software testing — from LLM basics to building AI agents that automate test plan creation.
 
 ---
 
-## Project Structure
+## 📂 Repository Structure
 
-```
-AITesterBlueprint4x/
-├── chapter_01_LLM_Basics/          # LLM fundamentals, attention mechanisms, anti-hallucination
-├── chapter_02_Prompt_Eng/          # Prompt engineering with RICE POT framework
-│   ├── prompt_templates/           # Reusable prompt templates (testcase_creator, STLC)
-│   └── RICE_POT_PlaywrightFramework/  # Enterprise Playwright + TypeScript framework
-├── chapter_03_Local_TC_Genarator/  # Local Test Case Generator with Streamlit + Ollama
-│   ├── src/                        # Application source code
-│   │   ├── app.py                  # Main chat screen (Streamlit)
-│   │   ├── pages/settings.py       # Settings configuration screen
-│   │   ├── config_store.py         # Settings persistence layer
-│   │   ├── jira_client.py          # Jira REST API wrapper
-│   │   ├── llm_client.py           # Ollama + Groq LLM orchestrator
-│   │   └── plan.md                 # Architecture & implementation plan
-│   └── Templates/                  # LLM prompt templates
-└── README.md
-```
+| Chapter | Topic | Description |
+|---|---|---|
+| `chapter_01_LLM_Basics/` | LLM Fundamentals | Anti-hallucination techniques, attention mechanisms, ML/DL/AI concepts |
+| `chapter_02_Prompt_Eng/` | Prompt Engineering | RICE_POT templates, test plan/case frameworks, Playwright & Selenium prompts |
+| `chapter_03_Local_TC_Generator/` | Local Test Case Generator | Streamlit app with Ollama for local test case generation from Jira |
+| `chapter_04_JobKitAI/` | Resume Helper | AI-powered resume tailoring tool |
+| `chapter_05_JobTrackerAI/` | Job Tracker | React + Vite job application tracker with IndexedDB |
+| `chapter_06_Branding_LinkedinSkills/` | Content Repurposing | Skill-based content repurposing pack |
+| `chapter_07_AI_Agents_Test-Plan-Agent-Blast/` | **Test Plan Agent (Reference)** | Full B.L.A.S.T. implementation — Jira → Test Plan with Groq/DeepSeek |
+| `chapter_08_n8n_Agents/` | n8n AI Agents | Jira fetch/create AI agent workflows for n8n |
+| `Practice_chapter_07_AI_Agents_Test-Plan-Agent-Blast/` | **Test Plan Agent (Practice)** | Practice rebuild of the Test Plan Agent from scratch |
 
 ---
 
-## RICE POT Playwright Framework
+## 🧪 Practice: Test Plan Agent (B.L.A.S.T. Protocol)
 
-Enterprise-grade **Playwright + TypeScript** automation framework for Salesforce login testing, built using the RICE POT prompt engineering methodology.
+Located in `Practice_chapter_07_AI_Agents_Test-Plan-Agent-Blast/`
 
-### Tech Stack
+### What It Does
 
-| Layer | Technology |
-|---|---|
-| **Language** | TypeScript (ES2022, strict mode) |
-| **Test Runner** | Playwright Test (`@playwright/test`) |
-| **Browsers** | Chromium, Firefox, WebKit |
-| **Locator Strategy** | Playwright semantic locators (`getByLabel`, `getByRole`, `getByText`) with xpath fallback |
-| **Design Pattern** | Page Object Model (POM) |
-| **Config** | Environment variables (`process.env`) |
-| **Reporting** | HTML report + list reporter + screenshot/trace on failure |
+Give it a Jira ticket ID → get back a formal, review-ready Test Plan markdown file. Every claim is traceable to a real field on the ticket. Nothing is invented.
+
+### Architecture (A.N.T. 3-Layer)
+
+```
+┌─────────────────────────────────────────┐
+│ Layer 1: Architecture (architecture/)    │
+│ 6 Markdown SOPs defining every step     │
+├─────────────────────────────────────────┤
+│ Layer 2: Navigation (navigation.py)     │
+│ Orchestrator — routes data, handles     │
+│ failures, enforces readiness gate       │
+├─────────────────────────────────────────┤
+│ Layer 3: Tools (tools/)                 │
+│ 12 deterministic Python modules.        │
+│ Only ONE calls an LLM (AI-2 invariant)  │
+└─────────────────────────────────────────┘
+```
+
+### Pipeline (7 Steps, 6 Deterministic)
+
+```
+Prompt → Parse Key → Fetch Jira → Normalize → Readiness → LLM → Render → Test Plan
+         (regex)     (REST v3)    (ADF→md)    (gate)     (1 call) (template)
+```
 
 ### Quick Start
 
 ```bash
-cd chapter_02_Prompt_Eng/RICE_POT_PlaywrightFramework
-
-# Install dependencies
-npm install
-
-# Install Playwright browsers
-npx playwright install chromium
-
-# Set credentials (never hardcode!)
-set SF_USERNAME=your@email.com
-set SF_PASSWORD=yourpassword
-
-# Run tests
-npm test                 # headless, all browsers
-npm run test:headed      # with browser UI
-npm run test:debug       # step-through debugging
-npm run test:report      # view HTML report
-npm run lint             # TypeScript type-check
-```
-
-### Test Coverage (8 test cases)
-
-| Suite | Tests |
-|---|---|
-| **valid-login.spec.ts** | UI elements render, Remember Me toggle, valid credentials → redirect |
-| **invalid-login.spec.ts** | Wrong password, empty username, empty password, both empty, invalid email format |
-
-### Framework Architecture
-
-```
-RICE_POT_PlaywrightFramework/
-├── package.json
-├── playwright.config.ts        # Multi-browser, timeout, screenshot/trace config
-├── tsconfig.json               # Strict TypeScript config
-└── src/
-    ├── config/
-    │   └── env.config.ts       # Env-var based configuration
-    ├── fixtures/
-    │   └── base-fixture.ts     # Extended test fixture with auto LoginPage init
-    ├── pages/
-    │   └── LoginPage.ts        # Page Object — 12 reusable action methods
-    ├── tests/
-    │   ├── valid-login.spec.ts
-    │   └── invalid-login.spec.ts
-    └── utils/
-        └── test-helpers.ts     # generateRandomString, isValidEmailFormat
-```
-
----
-
-## Chapter 3: Local Test Case Generator (Streamlit + Ollama)
-
-A **two-screen Streamlit application** that generates test cases from Jira tickets using a local LLM (Ollama) with automatic cloud fallback (Groq).
-
-### Features
-
-| Feature | Description |
-|---|---|
-| 💬 **Chat Interface** | ChatGPT-style UI — type a Jira key, get test cases |
-| ⚙️ **Settings Screen** | Configure Jira credentials, LLM provider, API keys |
-| 🦙 **Local LLM** | Uses Ollama (`gemma3:1b`) running locally — private & free |
-| ☁️ **Cloud Fallback** | Auto-switches to Groq if Ollama is unavailable |
-| 🔗 **Jira Integration** | Fetches ticket summary, description & acceptance criteria via REST API |
-| 📥 **Download** | Export generated test cases as Markdown |
-
-### Quick Start
-
-```bash
-cd chapter_03_Local_TC_Genarator/src
-
-# Install dependencies
+cd Practice_chapter_07_AI_Agents_Test-Plan-Agent-Blast
 pip install -r requirements.txt
-
-# Create .env file with your credentials (see .env.example)
-# JIRA_BASE_URL=https://your-company.atlassian.net
-# JIRA_EMAIL=you@company.com
-# JIRA_API_TOKEN=your-jira-api-token
-# GROQ_API_KEY=gsk_...  (optional, for fallback)
-
-# Make sure Ollama is running with gemma3:1b
-ollama serve
-
-# Launch the app
+cp .env.example .env   # Fill in your Jira + Groq credentials
 streamlit run app.py
 ```
 
-### Architecture
+### CLI Usage
 
+```bash
+python run.py SCRUM-42                    # Generate a plan
+python run.py "make a plan for SCRUM-42"  # Natural language
+python run.py --health                    # Test connections
+python run.py --dry-run SCRUM-42          # Fetch only, no LLM
+python run.py --force SCRUM-42            # Plan even if ticket is thin
 ```
-User: "create test cases for QA-102"
-  → app.py parses Jira key
-  → jira_client.py fetches ticket via REST API
-  → Template merged with ticket data
-  → llm_client.py: Ollama (default) or Groq (fallback)
-  → Test cases rendered in chat with download option
-```
+
+### Anti-Hallucination Rules
+
+- **BR-1:** Never invent acceptance criteria
+- **BR-2:** Never invent URLs, endpoints, dates, or tool names
+- **BR-3:** Never assume test data exists
+- **BR-4:** Refuse tickets below 5/11 readiness (gap report instead)
+- **BR-5:** Every claim traces to a ticket field or explicit assumption
+- **BR-6:** LLM returns JSON, never markdown — Python owns the template
 
 ### Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **UI** | Streamlit |
-| **LLM (Primary)** | Ollama — `gemma3:1b` |
-| **LLM (Fallback)** | Groq — `llama-3.1-8b-instant` |
-| **Jira API** | REST API v2 (Basic Auth) |
-| **Config** | `.env` + `settings.json` |
+- **UI:** Streamlit
+- **LLM:** Groq (`openai/gpt-oss-120b`)
+- **Jira:** Cloud REST API v3
+- **Language:** Python 3.10+
 
 ---
 
-## License
+## 🔧 Setup (Root)
 
-MIT
+```bash
+# Create virtual environment
+python -m venv .venv
+.venv\Scripts\activate   # Windows
+source .venv/bin/activate # macOS/Linux
+
+# Install per-chapter requirements as needed
+pip install -r Practice_chapter_07_AI_Agents_Test-Plan-Agent-Blast/requirements.txt
+```
+
+---
+
+## 📝 License
+
+Educational project for learning AI-powered testing techniques.

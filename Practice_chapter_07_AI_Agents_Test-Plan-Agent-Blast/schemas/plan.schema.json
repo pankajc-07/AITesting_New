@@ -1,0 +1,212 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "plan.schema.json",
+    "title": "TestPlan",
+    "type": "object",
+    "required": [
+        "plan_meta",
+        "objective",
+        "scope",
+        "test_strategy",
+        "risks_and_mitigations",
+        "assumptions"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "plan_meta": {
+            "type": "object",
+            "required": [
+                "jira_key",
+                "jira_summary",
+                "generated_at"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "jira_key": {
+                    "type": "string"
+                },
+                "jira_summary": {
+                    "type": "string"
+                },
+                "generated_at": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                }
+            }
+        },
+        "objective": {
+            "type": "object",
+            "required": [
+                "text",
+                "justified_by"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "minLength": 10
+                },
+                "justified_by": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "scope": {
+            "type": "object",
+            "required": [
+                "in_scope",
+                "out_of_scope"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "in_scope": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "item",
+                            "justified_by"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "item": {
+                                "type": "string"
+                            },
+                            "justified_by": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "out_of_scope": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "item",
+                            "justified_by"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "item": {
+                                "type": "string"
+                            },
+                            "justified_by": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "test_environment": {
+            "type": "string"
+        },
+        "test_strategy": {
+            "type": "string"
+        },
+        "test_data": {
+            "type": "string"
+        },
+        "defect_reporting": {
+            "type": "string"
+        },
+        "entry_criteria": {
+            "type": "string"
+        },
+        "exit_criteria": {
+            "type": "string"
+        },
+        "test_deliverables": {
+            "type": "string"
+        },
+        "test_schedule": {
+            "type": "string"
+        },
+        "risks_and_mitigations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "risk",
+                    "mitigation",
+                    "severity"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "risk": {
+                        "type": "string"
+                    },
+                    "mitigation": {
+                        "type": "string"
+                    },
+                    "severity": {
+                        "type": "string",
+                        "enum": [
+                            "High",
+                            "Medium",
+                            "Low"
+                        ]
+                    }
+                }
+            }
+        },
+        "tools": {
+            "type": "string"
+        },
+        "assumptions": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "assumption",
+                    "reason"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "assumption": {
+                        "type": "string"
+                    },
+                    "reason": {
+                        "type": "string",
+                        "enum": [
+                            "not_in_ticket",
+                            "industry_standard",
+                            "inferred_from_type"
+                        ]
+                    }
+                }
+            }
+        },
+        "trace": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "section",
+                    "source_fields"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "section": {
+                        "type": "string"
+                    },
+                    "source_fields": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "has_assumptions": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}

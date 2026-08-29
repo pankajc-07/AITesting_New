@@ -1,0 +1,87 @@
+{
+    "key": "PROJ-1",
+    "url": "https://example.atiassian.net/browse/PROJ-1",
+    "summary": "Add user login with SSO support",
+    "issue_type": "Story",
+    "status": "In Progress",
+    "priority": "High",
+    "labels": [
+        "authentication",
+        "sso",
+        "frontend"
+    ],
+    "components": [
+        "Auth Service",
+        "UI"
+    ],
+    "fix_versions": [
+        "v2.1.0"
+    ],
+    "environment": "Staging",
+    "description_md": "As a user, I want to log in using my company SSO credentials so that I don't need a separate password.\n\n## Acceptance Criteria\n- User can click 'Login with SSO' on the login page\n- User is redirected to the SSO provider\n- On successful authentication, user is redirected back and logged in\n- Failed authentication shows a clear error message\n- Session expires after 30 minutes of inactivity\n\n## Technical Notes\n- Use SAML 2.0 protocol\n- Support Azure AD and Okta as providers\n- Store tokens securely in httpOnly cookies\n\n## Out of Scope\n- Social logins (Google, Facebook) - v2.2\n- Password-based login changes",
+    "description_html": null,
+    "acceptance_criteria": [
+        {
+            "text": "User can click 'Login with SSO' on the login page",
+            "origin": "description",
+            "field_name": null
+        },
+        {
+            "text": "User is redirected to the SSO provider",
+            "origin": "description",
+            "field_name": null
+        },
+        {
+            "text": "On successful authentication, user is redirected back and logged in",
+            "origin": "description",
+            "field_name": null
+        },
+        {
+            "text": "Failed authentication shows a clear error message",
+            "origin": "description",
+            "field_name": null
+        },
+        {
+            "text": "Session expires after 30 minutes of inactivity",
+            "origin": "description",
+            "field_name": null
+        }
+    ],
+    "comments": [
+        {
+            "author": "Dev Lead",
+            "body_md": "We need to make sure we test with both Azure AD and Okta. The SSO config is different for each.",
+            "created": "2026-08-28T10:00:00Z"
+        },
+        {
+            "author": "QA Lead",
+            "body_md": "Also test session timeout edge cases - what happens at exactly 30 minutes, what happens with multiple tabs?",
+            "created": "2026-08-28T11:00:00Z"
+        }
+    ],
+    "sprint": {
+        "name": "Sprint 12",
+        "state": "active"
+    },
+    "parent": {
+        "key": "PROJ-10",
+        "summary": "Auth Module v2"
+    },
+    "linked_issues": [
+        {
+            "key": "PROJ-5",
+            "summary": "Design login page UI",
+            "link_type": "blocks"
+        },
+        {
+            "key": "PROJ-3",
+            "summary": "Set up SAML infrastructure",
+            "link_type": "relates to"
+        }
+    ],
+    "subtasks": [],
+    "attachments_meta": [],
+    "source": "fixture",
+    "fetched_at": "2026-08-29T00:00:00Z",
+    "gaps": []
+}

@@ -6,26 +6,9 @@ target/
 *.log
 .DS_Store
 .vscode/
-
-# Node.js / TypeScript
-node_modules/
-dist/
-*.tsbuildinfo
-
-# Playwright
-playwright-report/
-test-results/
-playwright/.cache/
-
-# Environment files
 .env
-.env.local
-
-# Streamlit / Python generated
-settings.json
 __pycache__/
 *.pyc
-*.pyo
-
-# OS files
-Thumbs.db
+.tmp/
+out/
+node_modules/
