@@ -1,0 +1,9 @@
+{
+  "JIRA_BASE_URL": "https://pankajqaaitesting.atlassian.net",
+  "JIRA_EMAIL": "pankaj.qa.aitesting@gmail.com",
+  "JIRA_API_TOKEN": "ATATT3xFfGF0LPQGhBLHHg7fZQdupvLCz9XqVq2fc1FzoXNBSexhF3QyRusiUGEkwaVx8Blk7CmUc1LsXC8V-aIKxJ0eemMVmgZ6ERIc36KqerqzFa-fnkCE4DyPagRG5qgtkpdt2DZdCHZYsvzzCxkHmbVez5Lvaqq-Qyp2zbeUf-ZeIPBQdSo=C46DEDD9",
+  "LLM_PROVIDER": "ollama",
+  "GROQ_API_KEY": "",
+  "OLLAMA_BASE_URL": "http://localhost:11434",
+  "OLLAMA_MODEL": "gemma3:1b"
+}
