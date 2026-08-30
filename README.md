@@ -15,12 +15,44 @@ A comprehensive learning repository for AI-powered software testing — from LLM
 | `chapter_05_JobTrackerAI/` | Job Tracker | React + Vite job application tracker with IndexedDB |
 | `chapter_06_Branding_LinkedinSkills/` | Content Repurposing | Skill-based content repurposing pack |
 | `chapter_07_AI_Agents_Test-Plan-Agent-Blast/` | **Test Plan Agent (Reference)** | Full B.L.A.S.T. implementation — Jira → Test Plan with Groq/DeepSeek |
-| `chapter_08_n8n_Agents/` | n8n AI Agents | Jira fetch/create AI agent workflows for n8n |
+| `chapter_08_n8n_Agents/` | n8n AI Agents | Jira fetch/create, Bug Triage, RCA, Social Media AI agent workflows for n8n |
 | `Practice_chapter_07_AI_Agents_Test-Plan-Agent-Blast/` | **Test Plan Agent (Practice)** | Practice rebuild of the Test Plan Agent from scratch |
 
 ---
 
-## 🧪 Practice: Test Plan Agent (B.L.A.S.T. Protocol)
+## � n8n AI Agents (Chapter 08)
+
+Located in `chapter_08_n8n_Agents/`
+
+### Agent Workflows (`Agents/`)
+
+| Agent | File | Description |
+|---|---|---|
+| Fetch Jira Ticket | `01_FetchJIRATicket_AIAgent.json` | AI agent to fetch and summarize Jira tickets |
+| Create Jira Ticket | `02_CreateJIRATicket_AIAgent.json` | AI agent to create Jira tickets from natural language |
+| Fetch + Create TC (Local LLM) | `03_FetchJIRACreateTCAIAgent_Local_LLM_ollama.json` | Fetch Jira ticket & generate test cases using local Ollama LLM |
+| Bug Triage | `04_BugTriageAIAgent.json` | AI agent for automated bug triage and prioritization |
+| RCA (Root Cause Analysis) | `05_RCA_Chatgpt_Jira_Production_Bug_RCA_Automation.json` | Automated RCA for production bugs using ChatGPT + Jira |
+| Social Media | `06_Social_Media_AIAgent.json` | AI agent for social media content generation |
+
+### Prompt Resources (`resources/`)
+
+| Resource | Description |
+|---|---|
+| `01_Raw_BugTriage.prompt.md` | Raw bug triage prompt template |
+| `02_ModifiedBugTriagePrompt.prompt.md` | Enhanced bug triage prompt with improvements |
+| `03_RCA_AI_Agent.prompt.md` | Root Cause Analysis AI agent prompt |
+
+### Import into n8n
+
+1. Open your n8n instance
+2. Go to **Settings → Import**
+3. Select the `.json` workflow file from `chapter_08_n8n_Agents/Agents/`
+4. Configure your Jira & LLM credentials in the workflow nodes
+
+---
+
+## �🧪 Practice: Test Plan Agent (B.L.A.S.T. Protocol)
 
 Located in `Practice_chapter_07_AI_Agents_Test-Plan-Agent-Blast/`
 
