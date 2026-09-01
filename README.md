@@ -119,6 +119,24 @@ python run.py --force SCRUM-42            # Plan even if ticket is thin
 - **Jira:** Cloud REST API v3
 - **Language:** Python 3.10+
 
+### ECLIPSE.md — Selenium + Cucumber BDD Protocol
+
+Located at `Practice_chapter_07_AI_Agents_Test-Plan-Agent-Blast/ECLIPSE.md`
+
+A master system prompt for GitHub Copilot to build Selenium WebDriver + Cucumber BDD test automation in Eclipse IDE using the **E.C.L.I.P.S.E.** protocol (Establish, Connect, Layout, Implement, Polish, Scan, Export) and the **P.O.M.** 3-layer architecture (Page Objects, Step Definitions, Feature Files).
+
+| Phase | Name | What It Covers |
+|---|---|---|
+| **E** | Establish | Feature discovery, page object map, browser matrix, test data strategy |
+| **C** | Connect | Maven dependencies, WebDriver handshake, browser driver strategy, smoke ping |
+| **L** | Layout | P.O.M. architecture, package conventions, SOPs for each layer |
+| **I** | Implement | Code generation in BDD order (config → utils → pages → steps → features) |
+| **P** | Polish | Locator audit, brittle XPath detection, refactoring, code review |
+| **S** | Scan | Cucumber execution, 7-step debugging protocol, common failure patterns |
+| **E** | Export | Cucumber/Extent/Allure reports, CI pipeline (Jenkins/GitHub Actions) |
+
+**Key rules enforced:** No `Thread.sleep()`, no inline locators, no assertions in page objects, no XPath when CSS works, no implementation details in Gherkin steps, every scenario traceable to a requirement via `@jira-` tag.
+
 ---
 
 ## 🔧 Setup (Root)
