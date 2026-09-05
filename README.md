@@ -34,6 +34,7 @@ Located in `chapter_08_n8n_Agents/`
 | Bug Triage | `04_BugTriageAIAgent.json` | AI agent for automated bug triage and prioritization |
 | RCA (Root Cause Analysis) | `05_RCA_Chatgpt_Jira_Production_Bug_RCA_Automation.json` | Automated RCA for production bugs using ChatGPT + Jira |
 | Social Media | `06_Social_Media_AIAgent.json` | AI agent for social media content generation |
+| Social Post Generator | `07_Social_Post_Generator (Gemini+ Upload Post).json` | AI agent to generate & upload social posts using Gemini |
 
 ### Prompt Resources (`resources/`)
 
