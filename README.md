@@ -16,6 +16,7 @@ A comprehensive learning repository for AI-powered software testing — from LLM
 | `chapter_06_Branding_LinkedinSkills/` | Content Repurposing | Skill-based content repurposing pack |
 | `chapter_07_AI_Agents_Test-Plan-Agent-Blast/` | **Test Plan Agent (Reference)** | Full B.L.A.S.T. implementation — Jira → Test Plan with Groq/DeepSeek |
 | `chapter_08_n8n_Agents/` | n8n AI Agents | Jira fetch/create, Bug Triage, RCA, Social Media AI agent workflows for n8n |
+| `chapter_09_LangFlow/` | LangFlow AI Agents | LangFlow-based Bug Triage agents (simple, agentic, UI-driven) + React chat UI |
 | `Practice_chapter_07_AI_Agents_Test-Plan-Agent-Blast/` | **Test Plan Agent (Practice)** | Practice rebuild of the Test Plan Agent from scratch |
 
 ---
@@ -137,6 +138,62 @@ A master system prompt for GitHub Copilot to build Selenium WebDriver + Cucumber
 | **E** | Export | Cucumber/Extent/Allure reports, CI pipeline (Jenkins/GitHub Actions) |
 
 **Key rules enforced:** No `Thread.sleep()`, no inline locators, no assertions in page objects, no XPath when CSS works, no implementation details in Gherkin steps, every scenario traceable to a requirement via `@jira-` tag.
+
+---
+
+## 🌊 LangFlow AI Agents (Chapter 09)
+
+Located in `chapter_09_LangFlow/`
+
+### What is LangFlow?
+
+LangFlow is a low-code visual framework for building AI agent workflows. This chapter covers building Bug Triage AI agents — from a simple hello-world flow to an agentic multi-step triage pipeline, plus a React-based chat UI for user interaction.
+
+### Agent Workflows (`AIAgents/`)
+
+| Agent | File | Description |
+|---|---|---|
+| Hello World | `01_LangFlow_Simple_HelloWorld.json` | Minimal LangFlow pipeline — introduction to the visual builder |
+| Bug Triage (Simple) | `002_AI4X_002_Bug_Triage_AI_Agent.json` | Single-step bug triage flow: input → LLM → output |
+| Bug Triage (Agentic) | `03_AI4X_003_Bug_Triage_AI_Agent_Agentic.json` | Multi-step agentic triage with tool-calling and reasoning loops |
+| Bug Triage (UI-Driven) | `004_AI4X_004_Bug_Triage_AI_Agent_Via_UI.json` | Triage flow designed to be triggered via REST API from a custom UI |
+| Custom Command | `CustomCommandCode.json` | Custom LangFlow component code for extended functionality |
+
+### Bug Triage UI (`ui_bugtriage/`)
+
+A lightweight React (Vite) chat interface that calls the LangFlow REST API:
+
+```bash
+cd chapter_09_LangFlow/ui_bugtriage
+npm install
+npm run dev          # Starts on http://localhost:5180
+```
+
+| Feature | Details |
+|---|---|
+| Framework | React + Vite |
+| API Backend | LangFlow REST API (`/api/v1/run/<flow-id>`) |
+| Input | Jira ticket key (e.g., `VWO-51`) |
+| Output | Rendered markdown with triage results & tables |
+| Config | `.env.local` — `LANGFLOW_URL`, `LANGFLOW_FLOW_ID`, `LANGFLOW_API_KEY` |
+
+### LangFlow Setup (from `Notes.md`)
+
+```bash
+mkdir langflow-qa && cd langflow-qa
+pip install virtualenv
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install langflow
+langflow run
+```
+
+### Import into LangFlow
+
+1. Open LangFlow UI (default: `http://localhost:7860`)
+2. Go to **Settings → Import**
+3. Select the `.json` workflow file from `chapter_09_LangFlow/AIAgents/`
+4. Configure your LLM API keys and Jira credentials in the flow nodes
 
 ---
 
