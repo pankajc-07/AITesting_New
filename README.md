@@ -188,6 +188,19 @@ pip install langflow
 langflow run
 ```
 
+### Quick Start (One Command)
+
+From the project root, activate the existing `.venv` and start LangFlow:
+
+```bash
+# Windows (PowerShell / CMD)
+.venv\Scripts\python.exe -m langflow run --host 127.0.0.1 --port 7860
+```
+
+Or simply **double-click** `chapter_09_LangFlow/start_langflow.bat` — no terminal needed.
+
+Once running, open **http://127.0.0.1:7860** in your browser.
+
 ### Import into LangFlow
 
 1. Open LangFlow UI (default: `http://localhost:7860`)
