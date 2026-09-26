@@ -246,6 +246,7 @@ A hands-on naive RAG implementation covering the fundamentals of building a retr
 | Component | Path | Description |
 |---|---|---|
 | Naive RAG | `00_NAIVE_RAG/` | Core naive RAG implementation |
+| Prompt Reference | `00_NAIVE_RAG/Prompt.md` | ChatGPT prompt used for building the naive RAG pipeline |
 | Data | `00_NAIVE_RAG/data/` | Sample data for RAG pipeline |
 | n8n Workflows | `00_NAIVE_RAG/n8n/` | n8n-based RAG automation workflows |
 
