@@ -17,6 +17,9 @@ A comprehensive learning repository for AI-powered software testing — from LLM
 | `chapter_07_AI_Agents_Test-Plan-Agent-Blast/` | **Test Plan Agent (Reference)** | Full B.L.A.S.T. implementation — Jira → Test Plan with Groq/DeepSeek |
 | `chapter_08_n8n_Agents/` | n8n AI Agents | Jira fetch/create, Bug Triage, RCA, Social Media AI agent workflows for n8n |
 | `chapter_09_LangFlow/` | LangFlow AI Agents | LangFlow-based Bug Triage agents (simple, agentic, UI-driven) + React chat UI |
+| `chapter_10_RAG_Basics/` | RAG Explorer | Visual RAG pipeline — PDF ingest → chunk → embed (Ollama) → store (ChromaDB) → answer (Groq) |
+| `chapter_11_RAG_Implementation/` | Naive RAG | Hands-on naive RAG implementation with data, n8n workflows, and local vector search |
+| `ui_screenshotbugAIAgent/` | Screenshot → Bug Reporter | React + Vite UI that uploads screenshots to n8n → Groq vision → Jira bug creation |
 | `Practice_chapter_07_AI_Agents_Test-Plan-Agent-Blast/` | **Test Plan Agent (Practice)** | Practice rebuild of the Test Plan Agent from scratch |
 
 ---
@@ -210,7 +213,72 @@ Once running, open **http://127.0.0.1:7860** in your browser.
 
 ---
 
-## 🔧 Setup (Root)
+## � RAG Explorer (Chapter 10)
+
+Located in `chapter_10_RAG_Basics/`
+
+A visual RAG (Retrieval-Augmented Generation) pipeline you can watch happen. Point it at a PDF and see every stage: raw extraction, repair, chunks, 768-dimension vectors, similarity scores, and the exact prompt sent to the model.
+
+| Stage | Tool | Where |
+|---|---|---|
+| Extract | pypdf | local |
+| Normalise | regex | local |
+| Chunk | word windows + overlap | local |
+| Embed | `nomic-embed-text` via Ollama, 768d | **local** |
+| Store + search | ChromaDB, cosine | **local** |
+| Answer | `openai/gpt-oss-120b` via Groq | remote |
+
+**The document never leaves your machine during ingest.** Embeddings run in Ollama, vectors sit in a local Chroma file. Only the 3 retrieved chunks go to Groq — and only when you use the Chat tab.
+
+```bash
+cd chapter_10_RAG_Basics
+./run.sh          # Starts on http://localhost:5190
+```
+
+---
+
+## 🔧 Naive RAG Implementation (Chapter 11)
+
+Located in `chapter_11_RAG_Implementation/`
+
+A hands-on naive RAG implementation covering the fundamentals of building a retrieval-augmented generation system from scratch. Includes data preparation, n8n workflow integration, and local vector search.
+
+| Component | Path | Description |
+|---|---|---|
+| Naive RAG | `00_NAIVE_RAG/` | Core naive RAG implementation |
+| Data | `00_NAIVE_RAG/data/` | Sample data for RAG pipeline |
+| n8n Workflows | `00_NAIVE_RAG/n8n/` | n8n-based RAG automation workflows |
+
+---
+
+## 📸 Screenshot to Bug Reporter (UI)
+
+Located in `ui_screenshotbugAIAgent/`
+
+A React + Vite front-end that uploads a screenshot, sends it to an n8n webhook, and gets back a Jira bug report drafted by Groq vision from what's actually visible in the image.
+
+```
+browser  ──POST /api/report──▶  Vercel function  ──▶  n8n webhook
+(same origin, no CORS)          (N8N_WEBHOOK_URL,      Groq vision → Jira create
+                                 server-side only)      → attach → Respond to UI
+```
+
+| Feature | Details |
+|---|---|
+| Framework | React + Vite |
+| API Backend | n8n webhook (via Vercel serverless function) |
+| Vision LLM | Groq (image → bug report) |
+| Output | Jira ticket with screenshot attached |
+
+```bash
+cd ui_screenshotbugAIAgent
+npm install
+npm run dev
+```
+
+---
+
+## �🔧 Setup (Root)
 
 ```bash
 # Create virtual environment
