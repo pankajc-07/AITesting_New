@@ -19,6 +19,10 @@ A comprehensive learning repository for AI-powered software testing — from LLM
 | `chapter_09_LangFlow/` | LangFlow AI Agents | LangFlow-based Bug Triage agents (simple, agentic, UI-driven) + React chat UI |
 | `chapter_10_RAG_Basics/` | RAG Explorer | Visual RAG pipeline — PDF ingest → chunk → embed (Ollama) → store (ChromaDB) → answer (Groq) |
 | `chapter_11_RAG_Implementation/` | Naive RAG | Hands-on naive RAG implementation with data, n8n workflows, and local vector search |
+| `chapter_12_RAG_QA_BuddyAI/` | RAG QA Buddy AI | RAG-powered QA assistant for answering testing questions |
+| `chapter_13_MCP_Basics/` | MCP Basics | Introduction to Model Context Protocol fundamentals |
+| `chapter_14_MCP_Create_VIBE/` | **MCP Create VIBE** | Build two MCP servers — TestCase Creator & TestSkill Finder — with 100+ AI testing skills |
+| `chapter_15_Python_PyTest/` | Python PyTest | Python testing with PyTest framework |
 | `ui_screenshotbugAIAgent/` | Screenshot → Bug Reporter | React + Vite UI that uploads screenshots to n8n → Groq vision → Jira bug creation |
 | `Practice_chapter_07_AI_Agents_Test-Plan-Agent-Blast/` | **Test Plan Agent (Practice)** | Practice rebuild of the Test Plan Agent from scratch |
 
@@ -249,6 +253,87 @@ A hands-on naive RAG implementation covering the fundamentals of building a retr
 | Prompt Reference | `00_NAIVE_RAG/Prompt.md` | ChatGPT prompt used for building the naive RAG pipeline |
 | Data | `00_NAIVE_RAG/data/` | Sample data for RAG pipeline |
 | n8n Workflows | `00_NAIVE_RAG/n8n/` | n8n-based RAG automation workflows |
+
+---
+
+## 🧪 MCP Create VIBE (Chapter 14)
+
+Located in `chapter_14_MCP_Create_VIBE/`
+
+Build two production-grade MCP (Model Context Protocol) servers for AI-powered testing — a **TestCase Creator** and a **TestSkill Finder** — with a library of 100+ AI testing skills spanning the full STLC.
+
+### What's Inside
+
+| Component | Path | Description |
+|---|---|---|
+| Objective & Plan | `00_Objective.md`, `01_TestCreatorMCP.plan.md`, `02_prompt.md` | Project blueprint, architecture plan, and AI prompts |
+| Test Data | `data/vwo_5000_test_cases.csv` | 5,000 real-world test cases for VWO application |
+| Assets | `assets/` | Hero images and skill-map diagrams |
+
+### TestCase Creator MCP (`testcase-creator-mcp/`)
+
+A Python MCP server for creating, searching, exporting, and managing test cases.
+
+| Module | Description |
+|---|---|
+| `src/tc_mcp/server.py` | MCP server entry point with tool registration |
+| `src/tc_mcp/models.py` | Pydantic data models for test cases |
+| `src/tc_mcp/repository.py` | CSV-backed test case storage and querying |
+| `src/tc_mcp/tools/` | 7 tool modules: authoring, discovery, export, planning, quality, search, common |
+| `tests/` | Pytest test suite with conftest fixtures |
+
+### TestSkill Finder MCP (`testskill-finder-mcp/`)
+
+A Python MCP server that catalogs and searches 100+ AI testing skills across the full STLC.
+
+| Module | Description |
+|---|---|
+| `src/tsf_mcp/server.py` | MCP server with skill search, catalog, and workflow tools |
+| `src/tsf_mcp/catalog.py` | Skill catalog loader and indexer |
+| `src/tsf_mcp/search.py` | Semantic and keyword-based skill search |
+| `src/tsf_mcp/tools/` | 3 tool modules: authoring, finder, workflow |
+| `tests/` | Pytest test suite for catalog, search, and server |
+
+### Skill Library (`skills/`) — 100+ AI Testing Skills
+
+| STLC Phase | Skills | Count |
+|---|---|---|
+| 01-requirement-analysis | acceptance-criteria-writer, jira-requirement-analyzer, requirement-traceability-builder | 3 |
+| 02-test-planning | risk-based-test-prioritizer, test-environment-planner, test-estimation-calculator, test-plan-generator, test-strategy-designer | 5 |
+| 03-test-design | api-test-designer, bdd-scenario-writer, exploratory-charter-designer, mobile-test-designer, test-scenario-designer, test-technique-designer | 6 |
+| 04-test-case-development | test-case-format-converter, test-case-reviewer, test-case-writer, test-data-generator | 4 |
+| 05-test-execution | automation-script-generator, ci-failure-analyzer, qa-status-reporter, regression-suite-selector, test-execution-tracker | 5 |
+| 06-defect-management | bug-reporter, bug-repro-minimizer, bug-triage-assistant, defect-trend-analyzer, rca-analyzer | 5 |
+| 07-test-closure | qa-retrospective-facilitator, release-readiness-checker, test-closure-reporter, test-coverage-analyzer | 4 |
+
+| Framework Pack | Skills | Count |
+|---|---|---|
+| ai-agent-pack | agent-guardrail-tester, agent-test-designer, agent-trajectory-evaluator, multi-agent-workflow-tester, prompt-injection-tester | 5 |
+| api-pack | api-contract-tester, api-mock-designer, graphql-api-tester, postman-collection-builder, pytest-api-tester, restassured-api-tester | 6 |
+| automation-pack | appium-mobile-test-generator, automation-framework-architect, flaky-test-quarantine-manager | 3 |
+| cypress-pack | cy-api-tester, cy-ci-configurator, cy-component-tester, cy-custom-command-builder, cy-flaky-debugger, cy-intercept-mocker, cy-selector-strategist, cy-test-generator | 8 |
+| llm-eval-pack | deepeval-test-writer, golden-dataset-builder, hallucination-test-designer, llm-eval-planner, llm-judge-rubric-designer, prompt-regression-tester, rag-evaluation-designer | 7 |
+| mcp-pack | mcp-security-reviewer, mcp-server-scaffolder, mcp-server-tester, mcp-tool-designer, mcp-tool-selection-evaluator | 5 |
+| performance-pack | frontend-performance-auditor, jmeter-test-plan-builder, k6-load-test-generator, locust-load-test-generator, performance-results-analyzer, performance-test-strategist | 6 |
+| playwright-pack | pw-accessibility-auditor, pw-api-tester, pw-ci-configurator, pw-fixture-designer, pw-flaky-debugger, pw-locator-fixer, pw-network-mocker, pw-page-object-builder, pw-test-generator, pw-trace-analyzer, pw-visual-regression | 11 |
+| security-pack | auth-session-tester, input-validation-tester, owasp-api-security-tester, owasp-web-test-designer, sca-vulnerability-triager, zap-dast-configurator | 6 |
+| selenium-pack | se-cross-browser-runner, se-data-driven-designer, se-driver-manager, se-flaky-debugger, se-framework-scaffolder, se-grid-configurator, se-locator-strategist, se-page-object-builder, se-report-integrator, se-test-generator, se-wait-fixer | 11 |
+
+### Quick Start
+
+```bash
+cd chapter_14_MCP_Create_VIBE
+
+# TestCase Creator MCP
+cd testcase-creator-mcp
+uv sync
+uv run pytest tests/
+
+# TestSkill Finder MCP
+cd ../testskill-finder-mcp
+uv sync
+uv run pytest tests/
+```
 
 ---
 
