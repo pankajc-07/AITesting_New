@@ -1,0 +1,33 @@
+[project]
+name = "tsf-mcp"
+version = "0.1.0"
+description = "TestSkill Finder MCP: find, browse, and use 100+ AI testing skills over MCP"
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+dependencies = [
+    "fastmcp>=4.1.0,<5",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+tsf-mcp = "tsf_mcp.server:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tsf_mcp"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"../skills" = "tsf_mcp/skills"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

@@ -335,6 +335,38 @@ uv sync
 uv run pytest tests/
 ```
 
+### Practice Build (`chapter_14_MCP_Create_VIBE_Practice/`)
+
+Hands-on rebuild of both MCP servers from scratch with the plan.
+
+| Component | Path | Description |
+|---|---|---|
+| Build Plan | `01_TestCreatorMCP.plan.md` | Full architecture plan with 18 tools, data profile, and implementation phases |
+| TestCase Creator MCP | `testcase_Creator_mcp/` | FastMCP server — 18 tools for search, authoring, export, planning, quality |
+| TestSkill Finder MCP | `testskill-finder-mcp/` | FastMCP server — 12 tools, 100 skills, keyword + semantic search |
+| Skills Library | `testskill-finder-mcp/skills/` | 100 SKILL.md files across 7 STLC phases + 10 framework packs |
+
+**MCP Connection URLs:**
+
+| Server | URL |
+|--------|-----|
+| TestCase Creator | `http://127.0.0.1:8000/mcp` |
+| TestSkill Finder | `http://127.0.0.1:8110/mcp` |
+
+```bash
+cd chapter_14_MCP_Create_VIBE_Practice
+
+# TestCase Creator MCP (18 tools, 5,000 test cases)
+cd testcase_Creator_mcp
+uv sync
+uv run tc-mcp --transport http --port 8000
+
+# TestSkill Finder MCP (12 tools, 100 skills)
+cd ../testskill-finder-mcp
+uv sync
+uv run tsf-mcp --transport http --port 8110
+```
+
 ---
 
 ## 📸 Screenshot to Bug Reporter (UI)
