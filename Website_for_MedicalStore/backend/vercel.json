@@ -1,0 +1,18 @@
+{
+  "services": {
+    "sri-gajana-medical-api": {
+      "root": ".",
+      "buildCommand": "pip install -r requirements.txt",
+      "entrypoint": "app:app"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "sri-gajana-medical-api"
+      }
+    }
+  ]
+}

@@ -9,7 +9,7 @@ from routes.medicines import medicines_bp
 def create_app():
     app = Flask(__name__)
 
-    basedir = os.path.abspath(os.path.dirname(__file__))
+    basedir = os.environ.get("VERCEL", "") and "/tmp" or os.path.abspath(os.path.dirname(__file__))
     db_path = os.path.join(basedir, "medical_store.db")
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
